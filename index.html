@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Website đăng nhập</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 100px; }
+    input, button { padding: 10px; margin: 5px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <div id="login">
+    <h2>Đăng nhập</h2>
+    <input type="password" id="password" placeholder="Nhập mật khẩu">
+    <br>
+    <button onclick="login()">Đăng nhập</button>
+    <p id="msg"></p>
+  </div>
+
+  <div id="main" class="hidden">
+    <h2>Chào mừng!</h2>
+    <button onclick="goToDocs()">Vào Google Docs</button>
+  </div>
+
+<script>
+  // Danh sách mật khẩu (mỗi cái dùng 1 lần)
+  let passwords = ["123", "456", "789"];
+
+  function login() {
+    let input = document.getElementById("password").value;
+    let index = passwords.indexOf(input);
+
+    if (index !== -1) {
+      // Xóa mật khẩu đã dùng
+      passwords.splice(index, 1);
+
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("main").classList.remove("hidden");
+    } else {
+      document.getElementById("msg").innerText = "Sai hoặc mật khẩu đã dùng!";
+    }
+  }
+
+  function goToDocs() {
+    window.location.href = "https://forms.gle/cE5Z45H4QqFMzu1F8";
+  }
+</script>
+
+</body>
+</html>
