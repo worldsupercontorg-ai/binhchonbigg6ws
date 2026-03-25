@@ -2,14 +2,18 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>WS Big 6 Login</title>
+  <title>WS Big 6 Voting</title>
   <style>
     body {
       font-family: Arial;
       text-align: center;
-      margin-top: 100px;
+      margin: 0;
       background: #0f172a;
       color: white;
+    }
+
+    #login {
+      margin-top: 100px;
     }
 
     input, button {
@@ -40,6 +44,12 @@
     #msg {
       color: #f87171;
     }
+
+    iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
   </style>
 </head>
 <body>
@@ -53,14 +63,12 @@
     <p id="msg"></p>
   </div>
 
-  <!-- MAIN -->
-  <div id="main" class="hidden">
-    <h2>✨ Chào mừng đến Big 6 Voting</h2>
-    <button onclick="goToDocs()">Bình chọn ngay</button>
+  <!-- FORM -->
+  <div id="formPage" class="hidden">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfPLACEHOLDER/viewform?embedded=true"></iframe>
   </div>
 
 <script>
-  // Load mật khẩu từ localStorage hoặc tạo mới
   let passwords = JSON.parse(localStorage.getItem("passwords")) || [
     "WSxB6@A9k2Q","Big6#WSc7P1","WS2026!B6xL3","SupCont@6Zk8",
     "WSB6#Qp2X9","B6World!7Lm4","WSxTop6@R5K","Super6#Wz1N8",
@@ -77,19 +85,14 @@
     let index = passwords.indexOf(input);
 
     if (index !== -1) {
-      // Xóa mật khẩu đã dùng
       passwords.splice(index, 1);
       localStorage.setItem("passwords", JSON.stringify(passwords));
 
       document.getElementById("login").classList.add("hidden");
-      document.getElementById("main").classList.remove("hidden");
+      document.getElementById("formPage").classList.remove("hidden");
     } else {
-      document.getElementById("msg").innerText = "❌ Sai hoặc mật khẩu đã được sử dụng!";
+      document.getElementById("msg").innerText = "❌ Sai hoặc đã dùng!";
     }
-  }
-
-  function goToDocs() {
-    window.open("https://forms.gle/cE5Z45H4QqFMzu1F8", "_blank");
   }
 </script>
 
